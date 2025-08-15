@@ -34,3 +34,4 @@ k = int(input("Nhập số nguyên k: "))
 s = Solution()
 
 print(s.topKFrequent(nums, k))
+
