@@ -1,25 +1,23 @@
 from typing import List
-
 class Solution:
     def encode(self, strs: List[str]) -> str:
-        parts = []
+        res = ""
         for s in strs:
-            parts.append(str(len(s)))
-            parts.append('#')
-            parts.append(s)
-        return ''.join(parts)
-
+            res += str(len(s)) + "#" + s
+        return res
+    
     def decode(self, s: str) -> List[str]:
         res = []
-        i, n = 0, len(s)
-        while i < n:
+        i = 0
+        while i < len(s):
             j = i
-            while j < n and s[j] != '#':
+            while s[j] != "#":
                 j += 1
-            length = int(s[i:j])
-            i = j + 1
-            res.append(s[i:i+length])
-            i += length
+            length = int(s[i:j])   # độ dài chuỗi
+            i = j + 1              # nhảy qua dấu #
+            j = i + length         # vị trí kết thúc
+            res.append(s[i:j])     # lấy chuỗi
+            i = j                  # cập nhật i
         return res
 
 strs = list(input("Nhập các từ cách nhau khoảng trắng: ").split())
@@ -27,3 +25,4 @@ s = Solution()
 res = s.encode(strs)
 print(s.encode(strs))
 print(s.decode(res))
+
