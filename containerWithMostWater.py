@@ -20,3 +20,4 @@ heights = list(map(int, input("Nhập chiều cao các cột (cách nhau bởi d
 sol = Solution()
 ket_qua = sol.maxArea(heights)
 print("Diện tích chứa nước lớn nhất là:", ket_qua)
+
