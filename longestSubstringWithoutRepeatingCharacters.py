@@ -33,3 +33,4 @@ if __name__ == "__main__":
     sol = Solution()
     print("Độ dài substring không lặp (Cách 1 - set):", sol.lengthOfLongestSubstring(s))
     print("Độ dài substring không lặp (Cách 2 - dict):", sol.lengthOfLongestSubstring2(s))
+
