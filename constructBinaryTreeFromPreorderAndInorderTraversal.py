@@ -1,13 +1,9 @@
 from typing import List, Optional
-
-# Định nghĩa cây nhị phân
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
-
-
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         # preIdx: chỉ số đang xét trong preorder
