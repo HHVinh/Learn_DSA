@@ -5,13 +5,10 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         ROWS, COLS = len(board), len(board[0])  # số hàng và số cột của board
         
-        # Đếm số lần xuất hiện của từng ký tự trong board
-        board_counter = Counter(ch for row in board for ch in row)
-        # Đếm số lần xuất hiện của từng ký tự trong từ word
-        word_counter = Counter(word)
+        board_counter = Counter(ch for row in board for ch in row) # Đếm số lần xuất hiện của từng ký tự trong board
+        word_counter = Counter(word) # Đếm số lần xuất hiện của từng ký tự trong từ word
 
-        # Nếu trong board thiếu ký tự cần thiết so với word => trả về False ngay
-        for ch in word_counter:
+        for ch in word_counter: # Nếu trong board thiếu ký tự cần thiết so với word => trả về False ngay
             if board_counter[ch] < word_counter[ch]:
                 return False
 
@@ -20,8 +17,7 @@ class Solution:
         if board_counter[word[0]] > board_counter[word[-1]]:
             word = word[::-1]
 
-        # Hàm DFS kiểm tra từ vị trí (r, c) có khớp tiếp tục với word[i:] hay không
-        def dfs(r, c, i):
+        def dfs(r, c, i): # Hàm DFS kiểm tra từ vị trí (r, c) có khớp tiếp tục với word[i:] hay không
             if i == len(word):  # nếu duyệt hết word thì thành công
                 return True
             # Kiểm tra điều kiện ngoài biên hoặc ký tự không khớp
@@ -29,8 +25,7 @@ class Solution:
                 word[i] != board[r][c] or board[r][c] == '#'):
                 return False
 
-            # Đánh dấu ô đã dùng bằng ký tự đặc biệt '#'
-            temp = board[r][c]
+            temp = board[r][c] # Đánh dấu ô đã dùng bằng ký tự đặc biệt '#'
             board[r][c] = '#'
 
             # Thử đi 4 hướng: xuống, lên, phải, trái
@@ -39,12 +34,10 @@ class Solution:
                    dfs(r, c + 1, i + 1) or
                    dfs(r, c - 1, i + 1))
 
-            # Hoàn tác (backtracking) để có thể dùng lại ô này cho nhánh khác
-            board[r][c] = temp
+            board[r][c] = temp # Hoàn tác (backtracking) để có thể dùng lại ô này cho nhánh khác
             return res
 
-        # Duyệt từng ô trong board, thử bắt đầu từ ô đó
-        for r in range(ROWS):
+        for r in range(ROWS): # Duyệt từng ô trong board, thử bắt đầu từ ô đó
             for c in range(COLS):
                 if dfs(r, c, 0):  # nếu tìm thấy thì trả về True
                     return True
